@@ -460,7 +460,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bt.abu.MonthlyAFT.Extension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bta.abu.MonthlyAFT.Extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
