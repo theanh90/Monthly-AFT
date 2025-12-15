@@ -30,7 +30,11 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
         os_log(.default, "Received message from browser.runtime.sendNativeMessage: %@ (profile: %@)", String(describing: message), profile?.uuidString ?? "none")
 
         let response = NSExtensionItem()
-        response.userInfo = [ SFExtensionMessageKey: [ "echo": message ] ]
+        if #available(iOS 17.0, macOS 14.0, *) {
+            response.userInfo = [ SFExtensionMessageKey: [ "echo": message ] ]
+        } else {
+            response.userInfo = ["emtpy": "empty"]
+        }
 
         context.completeRequest(returningItems: [ response ], completionHandler: nil)
     }
