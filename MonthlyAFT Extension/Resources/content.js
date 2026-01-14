@@ -31,8 +31,13 @@ function calculateAFT() {
             displayText = 'Vãi nồi vừa đủ giờ!!!';
         }
         
+        // calculate worked time for current day
+        const startWorkingElements = document.getElementById("total-working-hours").innerText;
+        const workedTime = startWorkingElements.split(': ')[1];
+        const displayWorkedTime = convertHoursToDailyText(workedTime)
+        
         // display value
-        displayMessage(displayText);
+        displayMessage(displayWorkedTime, displayText);
     }
 }
 
@@ -43,10 +48,16 @@ function convertHoursToText(hours) {
     return `h (${wholeHours} giờ ${minutes} phút)`;
 }
 
-function displayMessage(text) {
-    const newElement = document.createElement('div');
-    newElement.innerText = text;
+function convertHoursToDailyText(hours) {
+    const wholeHours = Math.trunc(hours);
+    const minutes = Math.round(Math.abs(hours - wholeHours) * 60);
 
+    return `Today: ${wholeHours} giờ ${minutes} phút`;
+}
+
+function displayMessage(dayValue, monthValue) {
+    // monthday AFT
+    const newElement = document.createElement('div');
     newElement.style.position = 'fixed';
     newElement.style.bottom = '50px';
     newElement.style.left = '10px';
@@ -54,5 +65,13 @@ function displayMessage(text) {
     newElement.style.padding = '10px';
     newElement.style.zIndex = '1000';
     newElement.style.color = 'white';
+    
+    const dayElement = document.createElement('p');
+    dayElement.innerText = dayValue;
+    const monthElement = document.createElement('p');
+    monthElement.innerText = monthValue;
+    
+    newElement.appendChild(dayElement);
+    newElement.appendChild(monthElement);
     document.body.appendChild(newElement);
 }
