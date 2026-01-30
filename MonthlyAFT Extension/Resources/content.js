@@ -65,7 +65,7 @@ function handleCurrentDay() {
     const workedHoursCell = firstRow.querySelectorAll('td')[4].textContent.trim();
     let workedHourToday = null;
     
-    if (workedHoursCell == "-") {
+    if (workedHoursCell == "N/A") {
         // 2. get column "In Time" (column 3, index = 2)
         const inTimeCell = firstRow.querySelectorAll('td')[2];
 
@@ -73,7 +73,7 @@ function handleCurrentDay() {
         const inTime = inTimeCell.textContent.trim();
         
         // 4. calculated worked time
-        const workedHourToday = hoursFromDecimalToNow(timeToDecimal(inTime));
+        workedHourToday = hoursFromDecimalToNow(timeToDecimal(inTime));
     } else {
         workedHourToday = timeToDecimal(workedHoursCell);
     }
